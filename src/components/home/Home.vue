@@ -23,7 +23,7 @@
           <b-dropdown :size="menuSize" variant="success" right text="More" @click="trackEvent('openDropdown', 'more')">
             <b-dropdown-item to="/about">About Us</b-dropdown-item>
             <b-dropdown-item to="/mission">Our Mission</b-dropdown-item>
-            <b-dropdown-item to="/fluffy">Fluffy</b-dropdown-item>
+            <b-dropdown-item href="https://fluffy.mcklatch.com" target="_blank" rel="noopener noreferrer">Fluffy</b-dropdown-item>
             <b-dropdown-item to="/contact">Get in touch</b-dropdown-item>
           </b-dropdown>
         </b-button-group>

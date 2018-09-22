@@ -13,7 +13,7 @@
       <b-nav-item to="/about">About</b-nav-item>
       <b-nav-item to="/mission">Mission</b-nav-item>
       <b-nav-item to="/prayer">Prayer</b-nav-item>
-      <b-nav-item to="/fluffy">Fluffy</b-nav-item>
+      <b-nav-item href="https://fluffy.mcklatch.com" target="_blank" rel="noopener noreferrer">Fluffy</b-nav-item>
       <b-nav-item to="/contact">Contact</b-nav-item>
     </b-nav>
 
