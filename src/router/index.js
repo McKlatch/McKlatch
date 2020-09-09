@@ -11,6 +11,7 @@ import FluffyInstructions from '@/components/pets/Instructions'
 import Contact from '@/components/contact/Contact'
 import Prayer from '@/components/prayer/Prayer'
 import ThankYou from '@/components/contact/ThankYou'
+import Hi from '@/components/hi/Hi'
 
 Vue.use(Router)
 
@@ -32,6 +33,7 @@ export default new Router({
     },
     { path: '/contact', name: 'Contact', component: Contact },
     { path: '/prayer', name: 'Prayer', component: Prayer },
-    { path: '/thankyou', name: 'ThankYou', component: ThankYou }
+    { path: '/thankyou', name: 'ThankYou', component: ThankYou },
+    { path: '/hi', name: 'Hi', component: Hi }
   ]
 })

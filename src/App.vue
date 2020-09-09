@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header v-show="$route.name !== 'Home'"/>
+    <app-header v-show="$route.name !== 'Home' && $route.name !== 'Hi'"/>
     <fade-transition>
       <router-view/>
     </fade-transition>
