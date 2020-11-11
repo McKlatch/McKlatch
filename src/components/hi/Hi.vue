@@ -7,7 +7,7 @@
       <p class="bio">{{ user. bio }}</p>
 
       <!-- Links -->
-      <a v-for="link in links" :key="link.text" :href="link.url" target="_blank" rel="noopener noreferrer" :class="link.featured ? 'featured' : ''">{{ link.text }}</a>
+      <a v-for="link in links" :key="link.text" :href="link.url" target="_blank" rel="noopener noreferrer" :class="(link.featured ? 'featured' : '')">{{ link.text }}</a>
 
       <!-- Channels -->
       <div class="channels">
@@ -24,11 +24,11 @@ export default {
     link: [
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Copse&display=swap'
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap'
       }
     ]
   },
@@ -48,7 +48,7 @@ export default {
         {
           featured: false,
           text: 'Design',
-          url: 'https://www.behance.net/mcklatch'
+          url: 'https://design.mcklatch.com/'
         },
         {
           featured: false,
@@ -159,17 +159,9 @@ export default {
   mixins: [backgroundImage]
 }
 </script>
-<style>
-:root {
-  --darkest: #16001E;
-  --dark: #303522;
-  --contrast: #FFD046;
-  --light: #D9695B;
-  --lightest: #FCF3EE;
-}
-
+<style scoped>
 .background {
-  background-color: var(--darkest);
+  background-color: #16001E;
   background: url(/static/PurpleEarth.jpg) no-repeat center center fixed;
   background-size: cover;
   position: fixed; top: 0; right: 0; bottom: 0; left: 0;
@@ -179,16 +171,16 @@ export default {
 
 .name {
   font-size: min(max(1rem, 12vw), 42px);
-  font-family: 'Playfair Display', serif;
-  color: var(--lightest);
+  font-family: 'Copse', serif;
+  color: #FCF3EE;
   max-width: 400px;
   margin: 2vh auto;
 }
 
 .bio {
   font-size: min(max(0.5rem, 5.5vw), 15px);
-  font-family: 'Source Sans Pro', sans-serif;
-  color: var(--lightest);
+  font-family: 'Montserrat', sans-serif;
+  color: #FCF3EE;
   max-width: 400px;
   margin: 0 auto 2vh;
   letter-spacing: min(max(0.1rem, 1vw), 1px);
@@ -198,7 +190,7 @@ export default {
   position: relative;
   z-index: 2;
   text-align: center;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 4vh auto 0
 }
 
@@ -208,19 +200,19 @@ a {
     margin: 1.5vh auto;
     padding: 2vh;
     font-size: min(max(0.5rem, 5.5vw), 14px);
-    color: var(--lightest);
-    border: 0.4vh solid var(--lightest);
+    color: #FCF3EE;
+    border: 0.4vh solid #FCF3EE;
     text-decoration: none;
     transition: all .2s ease-in-out;
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: min(max(0.1rem, 2.5vw), 2px);
+    letter-spacing: min(max(0.1rem, 2.5vw), 1px);
 }
 
 a.featured {
     position: relative;
-    background-color: var(--lightest);
-    color: var(--darkest);
+    background-color: #FCF3EE;
+    color: #16001E;
     font-weight: 900;
     animation: btnWiggle 5s infinite;
 }
@@ -236,8 +228,8 @@ a.featured:before {
 
 a.featured:hover,
 a:hover {
-    background-color: var(--darkest);
-    color: var(--lightest);
+    background-color: #16001E;
+    color: #FCF3EE;
     text-decoration: none;
 }
 
