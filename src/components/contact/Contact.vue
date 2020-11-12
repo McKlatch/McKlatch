@@ -6,7 +6,7 @@
           <b-col class="mid-buffer">
             <b-card title="Contact Us" class="text-center" border-variant="info">
               <p>We like to hear from people who care about us.
-              Our email address can be copied by <a Id="emailClip" href='' @click.prevent="trackEvent('copyEmail', 'sharedEmail')" v-clipboard="ourEmail">clicking here</a>, paste it wherever you email.</p>
+              Our joint email address can be copied by <a Id="emailClip" href='' @click.prevent="trackEvent('copyEmail', 'sharedEmail')" v-clipboard="ourEmail">clicking here</a>, paste it wherever you email.</p>
               <b-tooltip target="emailClip" title="copy to clipboard"></b-tooltip>
             </b-card>
           </b-col>

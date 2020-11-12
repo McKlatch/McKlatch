@@ -3,7 +3,13 @@
   <div class="background"></div>
     <div class="container">
       <!-- Header -->
+      <div class="topline">
+      <div class="userplate" @mouseover="highlightOn" @mouseout="highlightOff">
+        <img :src="user.avatar" alt="David McClatchey" class="avatar">
+        <p class="handle">{{ user.handle }}</p>
+      </div>
       <h1 class="name">{{ user.name }}</h1>
+      </div>
       <p class="bio">{{ user. bio }}</p>
 
       <!-- Links -->
@@ -18,6 +24,7 @@
   </div>
 </template>
 <script>
+import { davidLinks } from '../mixins/davidLinks'
 import { backgroundImage } from '../mixins/backgroundImage'
 export default {
   head: {
@@ -32,131 +39,27 @@ export default {
       }
     ]
   },
-  data () {
-    return {
-      user: {
-        avatar: '/static/avatar150.jpg',
-        name: 'David McClatchey',
-        bio: 'JesusPerson🙏 FunHusband🏰 GraphicDesigner✍️ ThatFriend🍇 HedgehogOwner🦔 TimeTraveler⏳ MissionaryInABox🗾 D.VaMain🥤 VueJSWrangler🖥️'
-      },
-      links: [
-        {
-          featured: true,
-          text: 'Proverbial Soup',
-          url: 'https://proverbialsoup.com'
-        },
-        {
-          featured: false,
-          text: 'Design',
-          url: 'https://design.mcklatch.com/'
-        },
-        {
-          featured: false,
-          text: 'WebDev',
-          url: 'http://8bitephod.com/'
-        },
-        {
-          featured: false,
-          text: 'David & Angela',
-          url: 'http://mcklatch.com/'
-        }
-      ],
-      channels: {
-        linkedin: {
-          title: 'LinkedIn',
-          url: 'https://www.linkedin.com/in/mcklatch/',
-          description: '',
-          btnText: 'Connect with me',
-          icon: '/static/linkedin.svg'
-        },
-        instagram: {
-          title: 'Instagram',
-          url: 'https://instagram.com/mcklatch',
-          description: '',
-          btnText: 'Follow Me',
-          icon: '/static/instagram.svg'
-        },
-        twitter: {
-          title: 'Twitter',
-          url: 'https://twitter.com/mcklatch',
-          description: '',
-          btnText: 'Follow Me',
-          icon: '/static/twitter.svg'
-        },
-        behance: {
-          title: 'Behance',
-          url: 'https://www.behance.net/mcklatch',
-          description: '',
-          btnText: 'Follow Me',
-          icon: '/static/behance.svg'
-        },
-        facebook: {
-          title: 'Facebook',
-          url: 'https://fb.me/mcklatch',
-          description: '',
-          btnText: 'Add me',
-          icon: '/static/facebook.svg'
-        },
-        youtube: {
-          title: 'Youtube',
-          url: 'https://www.youtube.com/user/drmcklatch',
-          description: 'David has made a lot of videos, Angela is in some of them. The average view-count on these videos is about 1 (Angela), so statistically the videos are enjoyed by every single viewer!',
-          btnText: 'Like and Subscribe',
-          icon: '/static/youtube.svg'
-        },
-        discord: {
-          title: 'Discord',
-          url: 'https://discord.gg/BFXQkxS',
-          description: '',
-          btnText: 'Discord Server',
-          icon: '/static/discord.svg'
-        },
-        overwatch: {
-          title: 'Overwatch',
-          url: 'https://playoverwatch.com/en-us/career/pc/eu/McKlatch-2564',
-          description: '',
-          btnText: 'Overwatch Career',
-          icon: '/static/overwatch.svg'
-        },
-        steam: {
-          title: 'Steam',
-          url: 'http://steamcommunity.com/id/mcklatch',
-          description: '',
-          btnText: 'Steam Profile',
-          icon: '/static/steam.svg'
-        },
-        skype: {
-          title: 'Skype',
-          url: 'skype:mcklatch?userinfo',
-          description: 'Discord preferred, skype is heavy beyond reason',
-          btnText: 'Skype Call',
-          icon: '/static/skype.svg'
-        },
-        github: {
-          title: 'Github',
-          url: 'https://github.com/mcklatch',
-          description: '',
-          btnText: 'Read my code',
-          icon: '/static/github.svg'
-        },
-        stackoverflow: {
-          title: 'StackOverflow',
-          url: 'https://stackoverflow.com/users/5644701/mcklatch',
-          description: '',
-          btnText: 'Be horrible',
-          icon: '/static/stackoverflow.svg'
-        },
-        contact: {
-          title: 'Contact',
-          url: 'http://mcklatch.com/contact',
-          description: '',
-          btnText: 'Get in touch',
-          icon: '/static/contact.svg'
-        }
-      }
+  computed: {
+    selectHighlights () {
+      let queryString = 'img'
+      this.user.socialsWithHandle.forEach(str => {
+        queryString += `[alt="${str}"], `
+      })
+      queryString = queryString.replace(/,\s*$/, '')
+      return queryString
     }
   },
-  mixins: [backgroundImage]
+  methods: {
+    highlightOn () {
+      const highlightable = document.querySelectorAll(this.selectHighlights)
+      highlightable.forEach((el) => el.classList.add('highlight'))
+    },
+    highlightOff () {
+      const highlightable = document.querySelectorAll(this.selectHighlights)
+      highlightable.forEach((el) => el.classList.remove('highlight'))
+    }
+  },
+  mixins: [davidLinks, backgroundImage]
 }
 </script>
 <style scoped>
@@ -169,12 +72,57 @@ export default {
   transform: scale(1.07);
 }
 
+.topline {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userplate {
+  position: relative;
+  width: min(max(12rem, 12vw), 72px);
+  height: min(max(12rem, 12vw), 72px);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.userplate:hover .avatar {
+  border: min(max(10rem, 12vw), 5px) solid #16001E;
+  transition: all .2s ease-in-out;
+}
+.userplate:hover .handle {
+  background-color: #16001E;
+  transition: all .2s ease-in-out;
+  color: #FFF;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: min(max(10rem, 12vw), 72px);
+  height: min(max(10rem, 12vw), 72px);
+  border-radius: 50%;
+  border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+}
+
+.handle {
+  background-color: #FCF3EE;
+  color: #16001E;
+  font-size: min(max(0.5rem, 8vw), 10px);
+  border-radius: 1vh;
+  margin-top: -0.7vh;
+}
+
 .name {
-  font-size: min(max(1rem, 12vw), 42px);
+  font-size: min(max(1rem, 8vw), 34px);
   font-family: 'Copse', serif;
   color: #FCF3EE;
   max-width: 400px;
   margin: 2vh auto;
+  white-space: nowrap;
+  padding-top: min(max(6rem, 6vw), 6px);
 }
 
 .bio {
@@ -182,7 +130,7 @@ export default {
   font-family: 'Montserrat', sans-serif;
   color: #FCF3EE;
   max-width: 400px;
-  margin: 0 auto 2vh;
+  margin: min(max(10rem, 12vw), 14px) auto;
   letter-spacing: min(max(0.1rem, 1vw), 1px);
 }
 
@@ -198,10 +146,10 @@ a {
     display: block;
     max-width: 400px;
     margin: 1.5vh auto;
-    padding: 2vh;
+    padding: min(max(10rem, 12vw), 12px);
     font-size: min(max(0.5rem, 5.5vw), 14px);
     color: #FCF3EE;
-    border: 0.4vh solid #FCF3EE;
+    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
     text-decoration: none;
     transition: all .2s ease-in-out;
     text-transform: uppercase;
@@ -214,7 +162,7 @@ a.featured {
     background-color: #FCF3EE;
     color: #16001E;
     font-weight: 900;
-    animation: btnWiggle 5s infinite;
+    animation: btnWiggle 3s infinite;
 }
 
 a.featured:before {
@@ -255,31 +203,36 @@ a:hover {
   filter: brightness(1) invert(0);
 }
 
+.channels img.highlight {
+  filter: brightness(1) invert(0);
+  scale: 1.2;
+  transition: all .2s ease-in-out;
+  animation: pulsate 0.5s infinite;
+}
+
 .channels a:hover {
   scale: 1.2;
   background-color: transparent;
 }
 
 /* animation */
-@-webkit-keyframes btnWiggle {
-  0% {-webkit-transform: rotate(0deg);}
-  2% {-webkit-transform: rotate(-1deg);}
-  3.5% {-webkit-transform: rotate(1deg);}
-  5% {-webkit-transform: rotate(0deg);}
-  100% {-webkit-transform: rotate(0deg);}
-}
-@-o-keyframes btnWiggle {
-  0% {-webkit-transform: rotate(0deg);}
-  2% {-webkit-transform: rotate(-1deg);}
-  3.5% {-webkit-transform: rotate(1deg);}
-  5% {-webkit-transform: rotate(0deg);}
-  100% {-webkit-transform: rotate(0deg);}
-}
 @keyframes btnWiggle {
   0% {-webkit-transform: rotate(0deg);}
   2% {-webkit-transform: rotate(-1deg);}
   3.5% {-webkit-transform: rotate(1deg);}
   5% {-webkit-transform: rotate(0deg);}
   100% {-webkit-transform: rotate(0deg);}
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
