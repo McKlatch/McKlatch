@@ -114,6 +114,13 @@ export const davidLinks = {
           btnText: 'Be horrible',
           icon: '/static/stackoverflow.svg'
         },
+        paypal: {
+          title: 'PayPal',
+          url: 'https://paypal.me/McKlatch',
+          description: '',
+          btnText: 'Send me Money',
+          icon: '/static/paypal.svg'
+        },
         contact: {
           title: 'Contact',
           url: 'http://mcklatch.com/contact',

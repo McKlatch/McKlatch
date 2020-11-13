@@ -18,7 +18,43 @@
       <!-- Channels -->
       <div class="channels">
         <a v-for="channel in channels" :key="channel.title" :href="channel.url" target="_blank" rel="noopener noreferrer" :title="channel.btnText"><img :src="channel.icon" :alt="channel.title" width="36vw"></a>
+        <a title="Prayer Updates" @click="showPrayer = !showPrayer"><img src="/static/prayer.svg" alt="Prayer" width="36vw" :class="showPrayer ? 'highlightsimple' : ''"></a>
       </div>
+      <transition name="fade">
+        <!-- Begin Mailchimp Signup Form -->
+        <div id="emailForm" v-if="showPrayer">
+          <p class="emailTop">{{ !validEmail || !validName ? 'Provide your email address and full&nbsp;name' : 'Click Subscribe to join our prayer letter list' }}</p>
+          <form action="https://mcklatch.us3.list-manage.com/subscribe/post?u=93caa82ac2938a4c54d34fab1&amp;id=5ba5e54022" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate ref="form">
+          <div>
+            <div>
+              <label label-for="emailInput">Email:</label>
+              <input name="EMAIL" id="emailInput" type="email" v-model.trim="email" required placeholder="email@example.com">
+            </div>
+            <div>
+              <label label-for="nameInput">Full Name:</label>
+              <input id="nameInput" type="text" v-model="fullName" required placeholder="Full Name">
+            </div>
+          </div>
+            <div v-show="false">
+              <label label-for="forenameInput">First Name:</label>
+              <input name="FNAME" id="forenameInput" type="text" v-model="forename" required>
+            </div>
+            <div v-show="false">
+              <label label-for="surnameInput">Last Name:</label>
+              <input name="LNAME" id="surnameInput" type="text" v-model="surname" required>
+            </div>
+              <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_93caa82ac2938a4c54d34fab1_5ba5e54022" tabindex="-1" value=""></div>
+            <div class="clear">
+              <input type="submit" :value="validEmail && validName ? 'Subscribe' : 'then click here'" name="subscribe" :disabled="!validEmail || !validName" :class="validEmail && validName ? 'livebutton' : 'deadbutton'">
+            </div>
+          </form>
+        </div>
+        <!--End mc_embed_signup-->
+      </transition>
     </div>
   
   </div>
@@ -39,6 +75,14 @@ export default {
       }
     ]
   },
+  data () {
+    return {
+      email: '',
+      forename: '',
+      surname: '',
+      showPrayer: false
+    }
+  },
   computed: {
     selectHighlights () {
       let queryString = 'img'
@@ -47,6 +91,25 @@ export default {
       })
       queryString = queryString.replace(/,\s*$/, '')
       return queryString
+    },
+    fullName: {
+    // getter
+      get () {
+        let name = `${this.forename} ${this.surname}`
+        return name.charAt(0) === ' ' ? name.substr(1) : name
+      },
+    // setter
+      set (str) {
+        this.forename = str.substr(0, str.indexOf(' '))
+        this.surname = str.substr(str.indexOf(' ') + 1)
+      }
+    },
+    validName () {
+      return this.fullName.trim().split(/\s+/).length >= 2
+    },
+    validEmail () {
+      const re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+      return re.test(this.email)
     }
   },
   methods: {
@@ -57,6 +120,9 @@ export default {
     highlightOff () {
       const highlightable = document.querySelectorAll(this.selectHighlights)
       highlightable.forEach((el) => el.classList.remove('highlight'))
+    },
+    submit () {
+      this.$refs.form.submit()
     }
   },
   mixins: [davidLinks, backgroundImage]
@@ -142,6 +208,61 @@ export default {
   margin: 4vh auto 0
 }
 
+#emailForm {
+  max-width: 400px;
+  margin: min(max(4rem, 5vw), 0px) auto;
+  font-size: min(max(0.5rem, 5.5vw), 15px);
+  font-family: 'Montserrat', sans-serif;
+  color: #FCF3EE;
+  letter-spacing: min(max(0.1rem, 1vw), 1px);
+  padding: min(max(10rem, 12vw), 12px);
+  border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+}
+
+.emailTop {
+  margin-bottom: 0.8vh;
+}
+
+label {
+  text-align: right;
+}
+
+.livebutton {
+    background-color: #FCF3EE;
+    display: block;
+    margin: 0.4vh auto 0;
+    padding: min(max(5rem, 6vw), 1px);
+    font-size: min(max(0.5rem, 5.5vw), 15px);
+    color: #16001E;
+    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    font-weight: 700;
+    letter-spacing: min(max(0.1rem, 2.5vw), 1px);
+    cursor: pointer;
+}
+
+.livebutton:hover {
+    background-color: #16001E;
+    color: #FCF3EE;
+    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+}
+
+.deadbutton {
+    background-color: #16001E;
+    display: block;
+    margin: 0.4vh auto 0;
+    padding: min(max(5rem, 6vw), 1px);
+    font-size: min(max(0.5rem, 5.5vw), 15px);
+    color: #FCF3EE;
+    border: min(max(10rem, 12vw), 6px) solid #16001E;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    font-weight: 400;
+    letter-spacing: min(max(0.1rem, 2.5vw), 1px);
+    cursor: not-allowed;
+}
+
 a {
     display: block;
     max-width: 400px;
@@ -210,6 +331,12 @@ a:hover {
   animation: pulsate 0.5s infinite;
 }
 
+.channels img.highlightsimple {
+  filter: brightness(1) invert(0);
+  scale: 1.2;
+  transition: all .2s ease-in-out;
+}
+
 .channels a:hover {
   scale: 1.2;
   background-color: transparent;
@@ -234,5 +361,12 @@ a:hover {
   100% {
     transform: scale(1);
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
