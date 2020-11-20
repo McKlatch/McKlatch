@@ -4,7 +4,7 @@
     <div class="container">
       <!-- Header -->
       <div class="topline">
-      <div class="userplate" @mouseover="highlightOn" @mouseout="highlightOff">
+      <div class="userplate" @mouseover="highlightOn" @mouseout="highlightOff" v-clipboard="handle">
         <img :src="user.avatar" alt="David McClatchey" class="avatar">
         <p class="handle">{{ user.handle }}</p>
       </div>
@@ -80,7 +80,8 @@ export default {
       email: '',
       forename: '',
       surname: '',
-      showPrayer: false
+      showPrayer: false,
+      handle: '@McKlatch'
     }
   },
   computed: {
@@ -156,7 +157,7 @@ export default {
 }
 
 .userplate:hover .avatar {
-  border: min(max(10rem, 12vw), 5px) solid #16001E;
+  border: 5px solid #16001E;
   transition: all .2s ease-in-out;
 }
 .userplate:hover .handle {
@@ -170,7 +171,7 @@ export default {
   width: min(max(10rem, 12vw), 72px);
   height: min(max(10rem, 12vw), 72px);
   border-radius: 50%;
-  border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+  border: 5px solid #FCF3EE;
 }
 
 .handle {
@@ -210,13 +211,13 @@ export default {
 
 #emailForm {
   max-width: 400px;
-  margin: min(max(4rem, 5vw), 0px) auto;
+  margin: 0 auto;
   font-size: min(max(0.5rem, 5.5vw), 15px);
   font-family: 'Montserrat', sans-serif;
   color: #FCF3EE;
   letter-spacing: min(max(0.1rem, 1vw), 1px);
   padding: min(max(10rem, 12vw), 12px);
-  border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+  border: 5px solid #FCF3EE;
 }
 
 .emailTop {
@@ -234,7 +235,7 @@ label {
     padding: min(max(5rem, 6vw), 1px);
     font-size: min(max(0.5rem, 5.5vw), 15px);
     color: #16001E;
-    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+    border: 5px solid #FCF3EE;
     text-decoration: none;
     transition: all .2s ease-in-out;
     font-weight: 700;
@@ -245,7 +246,7 @@ label {
 .livebutton:hover {
     background-color: #16001E;
     color: #FCF3EE;
-    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+    border: 5px solid #FCF3EE;
 }
 
 .deadbutton {
@@ -255,7 +256,7 @@ label {
     padding: min(max(5rem, 6vw), 1px);
     font-size: min(max(0.5rem, 5.5vw), 15px);
     color: #FCF3EE;
-    border: min(max(10rem, 12vw), 6px) solid #16001E;
+    border: 5px solid #16001E;
     text-decoration: none;
     transition: all .2s ease-in-out;
     font-weight: 400;
@@ -270,7 +271,7 @@ a {
     padding: min(max(10rem, 12vw), 12px);
     font-size: min(max(0.5rem, 5.5vw), 14px);
     color: #FCF3EE;
-    border: min(max(10rem, 12vw), 6px) solid #FCF3EE;
+    border: 5px solid #FCF3EE;
     text-decoration: none;
     transition: all .2s ease-in-out;
     text-transform: uppercase;
@@ -280,7 +281,7 @@ a {
 
 a.featured {
     position: relative;
-    background-color: #FCF3EE;
+    background-color: rgba(252, 243, 238, 0.75);
     color: #16001E;
     font-weight: 900;
     animation: btnWiggle 3s infinite;
@@ -297,7 +298,7 @@ a.featured:before {
 
 a.featured:hover,
 a:hover {
-    background-color: #16001E;
+    background-color: rgba(22, 0, 30, 0.75);
     color: #FCF3EE;
     text-decoration: none;
 }

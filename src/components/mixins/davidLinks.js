@@ -21,12 +21,12 @@ export const davidLinks = {
       {
         featured: false,
         text: 'WebDev',
-        url: 'http://8bitephod.com/'
+        url: 'https://dev.mcklatch.com/'
       },
       {
         featured: false,
         text: 'David & Angela',
-        url: 'http://mcklatch.com/'
+        url: 'https://mcklatch.com/'
       }
       ],
       channels: {
