@@ -53,7 +53,22 @@ const headings = [
   '🐌Snail Hotel',
   '💥Ultimate Ready',
   '✌️Good to See You!',
-  '🎃Any Questions?'
+  '🎃Any Questions?',
+  'ඞ Seems Pretty Sus',
+  '⚔️Hello There',
+  '🪖This is the Way',
+  '🍕I\'m All Outta Cash',
+  '🧻No Panic Buying',
+  '❤️x3000',
+  '🐱Vibing',
+  '🦖Cha Cha Real Smooth',
+  '👨‍🍳 おあがりよ!',
+  '👧🏻Okay Boomer',
+  '🔫I\'m Already Tracer',
+  '🚗So Much Spaghetti',
+  '🍌Banana for Scale',
+  '🍅Certified Fresh',
+  '🥑Millenials'
 ]
 
 export const slogans = {

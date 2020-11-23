@@ -61,7 +61,7 @@
 </template>
 <script>
 import { davidLinks } from '../mixins/davidLinks'
-import { backgroundImage } from '../mixins/backgroundImage'
+
 export default {
   head: {
     link: [
@@ -126,17 +126,16 @@ export default {
       this.$refs.form.submit()
     }
   },
-  mixins: [davidLinks, backgroundImage]
+  mixins: [davidLinks]
 }
 </script>
 <style scoped>
 .background {
   background-color: #16001E;
-  background: url(/static/PurpleEarth.jpg) no-repeat center center fixed;
+  background: url(/static/PurpleEarthBlur.jpg) no-repeat center center fixed;
   background-size: cover;
   position: fixed; top: 0; right: 0; bottom: 0; left: 0;
-  filter: blur(10px) brightness(0.7);
-  transform: scale(1.07);
+  filter: brightness(0.9);
 }
 
 .topline {
@@ -193,11 +192,11 @@ export default {
 }
 
 .bio {
-  font-size: min(max(0.5rem, 5.5vw), 15px);
+  font-size: min(max(0.3rem, 5.3vw), 13px);
   font-family: 'Montserrat', sans-serif;
   color: #FCF3EE;
   max-width: 400px;
-  margin: min(max(10rem, 12vw), 14px) auto;
+  margin: 12px auto;
   letter-spacing: min(max(0.1rem, 1vw), 1px);
 }
 
@@ -206,7 +205,7 @@ export default {
   z-index: 2;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  margin: 4vh auto 0
+  margin: 18px auto 0
 }
 
 #emailForm {

@@ -10,22 +10,22 @@ export const davidLinks = {
       },
       links: [{
         featured: true,
-        text: 'Proverbial Soup',
+        text: '🥣 Proverbial Soup',
         url: 'https://proverbialsoup.com'
       },
       {
         featured: false,
-        text: 'Design',
+        text: '📏 Design',
         url: 'https://design.mcklatch.com/'
       },
       {
         featured: false,
-        text: 'WebDev',
+        text: '🌐 WebDev',
         url: 'https://dev.mcklatch.com/'
       },
       {
         featured: false,
-        text: 'David & Angela',
+        text: '👪 David & Angela',
         url: 'https://mcklatch.com/'
       }
       ],
